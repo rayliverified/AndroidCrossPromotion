@@ -1,24 +1,24 @@
 <?php
 include_once("init.php");
 try {
+    echo "Database Creation - START";
     /*
      * Main Ad Table
      * id - primary key.
      * fromUserId - id of user that created ad.
      * adType - category type of app data returned.
-     * segment -
+     * segment - campaign A/B segmentation.
      * location - geo targeting.
      * deviceVersion - limit ad to supported devices only. Use integer values (e.g. Android Nougat  = 711)
      * weight - prioritize ad display frequency and order. Use 0-100.
-     * App details -
-     * title, description, descriptionShort, category, rating, installs, version, developer, email, address, website
+     * title, description, descriptionShort, category, rating, installs, version, developer, email, address, website - app details.
      * subtitle - ad secondary text/tagline.
      * linkUrl - app link.
      * packageName - app package name.
      * imgUrl, previewImgUrl - high and low res ad images.
      * videoUrl, previewVideoImgUrl - video URL and placeholder image URL.
      * text1, text2, text3 - extra customizable text fields.
-     * int1, int2, int3 - extra customizable number fields.
+     * number1, number2, number3 - extra customizable number fields.
      * createAt - ad created time in UTC.
      * updateAt - ad updated time.
      * startAt - ad campaign begins displaying.
@@ -41,7 +41,7 @@ try {
 								description varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								descriptionShort varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								category VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
-								rating DECIMAL(2, 3) NOT NULL DEFAULT 5,
+								rating DECIMAL(4, 3) NOT NULL DEFAULT 5.0,
 								installs int(11) UNSIGNED DEFAULT 0,
 								version VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								developer VARCHAR(40) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
@@ -57,9 +57,9 @@ try {
                                 text1 VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
                                 text2 VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
                                 text3 VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
-                                int1 int(11) UNSIGNED DEFAULT 0,
-                                int2 int(11) UNSIGNED DEFAULT 0,
-                                int3 int(11) UNSIGNED DEFAULT 0,
+                                number1 int(11) UNSIGNED DEFAULT 0,
+                                number2 int(11) UNSIGNED DEFAULT 0,
+                                number3 int(11) UNSIGNED DEFAULT 0,
 								createAt int(11) UNSIGNED DEFAULT 0,
 								updateAt int(11) UNSIGNED DEFAULT 0,
 								startAt int(11) UNSIGNED DEFAULT 0,
@@ -69,7 +69,14 @@ try {
 								clicks int(11) UNSIGNED DEFAULT 0,
 								sales int(11) UNSIGNED DEFAULT 0,
 								PRIMARY KEY  (id)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci");
-    $sth->execute();
+    if ($sth->execute())
+    {
+        echo "\r<br\r>Ads Table Creation - SUCCESS";
+    }
+    else
+    {
+        echo "\r<br\r>Ads Table Creation - FAILED";
+    }
 
     /*
      * Extra Ad Images Table
@@ -87,7 +94,14 @@ try {
 								createAt int(11) UNSIGNED DEFAULT 0,
 								removeAt int(11) UNSIGNED DEFAULT 0,
 								PRIMARY KEY  (id)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci");
-    $sth->execute();
+    if ($sth->execute())
+    {
+        echo "\r<br\r>Images Table Creation - SUCCESS";
+    }
+    else
+    {
+        echo "\r<br\r>Images Table Creation - FAILED";
+    }
 
     /*
      * Users Table
@@ -117,7 +131,14 @@ try {
 								u_agent varchar(300) DEFAULT '',
 								ip_addr CHAR(32) NOT NULL DEFAULT '',
 								PRIMARY KEY  (id), UNIQUE KEY (advertisingId)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci");
-    $sth->execute();
+    if ($sth->execute())
+    {
+        echo "\r<br\r>Users Table Creation - SUCCESS";
+    }
+    else
+    {
+        echo "\r<br\r>Users Table Creation - FAILED";
+    }
 
     /*
      * Ad Request Log Table
@@ -136,7 +157,14 @@ try {
 								u_agent varchar(300) DEFAULT '',
 								ip_addr CHAR(32) NOT NULL DEFAULT '',
 								PRIMARY KEY  (id)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci");
-    $sth->execute();
+    if ($sth->execute())
+    {
+        echo "\r<br\r>Access Table Creation - SUCCESS";
+    }
+    else
+    {
+        echo "\r<br\r>Access Table Creation - FAILED";
+    }
 
     /*
      * Ad Analytics Events Table
@@ -165,9 +193,16 @@ try {
 								u_agent varchar(300) DEFAULT '',
 								ip_addr CHAR(32) NOT NULL DEFAULT '',
 								PRIMARY KEY  (id)) ENGINE=MyISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci");
-    $sth->execute();
+    if ($sth->execute())
+    {
+        echo "\r<br\r>Analytics Table Creation - SUCCESS";
+    }
+    else
+    {
+        echo "\r<br\r>Analytics Table Creation - FAILED";
+    }
 
-    echo "Database creation success!";
+    echo "\r<br\r>Database Creation - END";
 
 } catch (Exception $e) {
 
