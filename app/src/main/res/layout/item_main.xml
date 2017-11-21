@@ -8,7 +8,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_default"
+        android:padding="@dimen/padding_sm"
         android:background="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
@@ -32,6 +32,9 @@
                 android:paddingTop="@dimen/padding_smxx"
                 android:paddingBottom="@dimen/padding_smxx"
                 android:layout_marginTop="-12dp"
+                android:layout_marginBottom="@dimen/padding_smxx"
+                android:layout_marginLeft="@dimen/padding_smxx"
+                android:layout_marginRight="@dimen/padding_smxx"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:text="5.0"
@@ -60,11 +63,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="Sample App Title"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/textPrimary"
                 android:textStyle="bold"
-                android:maxLines="1"
-                android:singleLine="true"
                 android:drawableRight="@drawable/icon_verified_circle"
                 android:drawablePadding="5dp"/>
             <TextView
@@ -72,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sample app description that explains what the app does."
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="@color/textSecondary"
                 android:maxLines="2"
                 android:ellipsize="end"
@@ -82,7 +83,6 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/padding_sm"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
@@ -93,7 +93,7 @@
                 android:layout_marginBottom="@dimen/padding_smxx"
                 android:layout_gravity="center_horizontal"
                 android:text="List price: FREE"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textColor="@color/btn_install"/>
 
             <TextView
@@ -101,10 +101,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
-                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/padding_smxx"
                 android:gravity="center"
                 android:text="INSTALL"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:drawableLeft="@drawable/icon_plus_fit_white"
