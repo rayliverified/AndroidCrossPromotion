@@ -32,6 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_WEBSITE = "website";
     public static final String KEY_LINKURL = "linkurl";
+    public static final String KEY_PACKAGENAME = "packagename";
     public static final String KEY_PREVIEWIMAGEURL = "previewimageurl";
     public static final String KEY_IMAGEURL = "imageurl";
     public static final String KEY_PREVIEWVIDEOIMAGEURL = "previewvideoimageurl";
@@ -68,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Table Query.
         String adsTable = "CREATE TABLE IF NOT EXISTS ads (_id INTEGER PRIMARY KEY AUTOINCREMENT, originalid INTEGER, fromid INTEGER, adtype INTEGER, segment TEXT, location TEXT, deviceversion INTEGER, " +
                 "weight INTEGER, title TEXT, subtitle TEXT, description TEXT, descriptionshort TEXT, category TEXT, rating INTEGER, installs INTEGER, " +
-                "version TEXT, developer TEXT, email TEXT, address TEXT, website TEXT, linkurl TEXT, previewimageurl TEXT, imageurl TEXT, previewvideoimageurl TEXT, " +
+                "version TEXT, developer TEXT, email TEXT, address TEXT, website TEXT, linkurl TEXT, packagename TEXT, previewimageurl TEXT, imageurl TEXT, previewvideoimageurl TEXT, " +
                 "videourl TEXT, text1 TEXT, text2 TEXT, text3 TEXT, number1 INTEGER, number2 INTEGER, number3 INTEGER, " +
                 "createat INTEGER DEFAULT 0, updateat INTEGER DEFAULT 0, startat INTEGER DEFAULT 0, endat INTEGER DEFAULT 0, removeat INTEGER DEFAULT 0);";
         String analyticsTable = "CREATE TABLE IF NOT EXISTS analytics (_id INTEGER PRIMARY KEY AUTOINCREMENT, analyticstype INTEGER, statid INTEGER, statint INTEGER, stattext TEXT, createat INTEGER DEFAULT 0, uploaded INTEGER DEFAULT 0);";
