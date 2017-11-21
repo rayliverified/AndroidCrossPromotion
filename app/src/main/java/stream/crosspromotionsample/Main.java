@@ -16,6 +16,7 @@ public class Main extends Application implements Parcelable {
     public String location;
     public int deviceVersion;
     public int weight;
+    public int price;
     public String title;
     public String subTitle;
     public String description;
@@ -61,6 +62,7 @@ public class Main extends Application implements Parcelable {
                 this.setLocation(jsonData.getString("location"));
                 this.setDeviceVersion(jsonData.getInt("deviceVersion"));
                 this.setWeight(jsonData.getInt("weight"));
+                this.setPrice(jsonData.getInt("price"));
                 this.setTitle(jsonData.getString("title"));
                 this.setSubTitle(jsonData.getString("subtitle"));
                 this.setDescription(jsonData.getString("description"));
@@ -154,6 +156,14 @@ public class Main extends Application implements Parcelable {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getTitle() {
@@ -401,6 +411,7 @@ public class Main extends Application implements Parcelable {
         dest.writeString(this.location);
         dest.writeInt(this.deviceVersion);
         dest.writeInt(this.weight);
+        dest.writeInt(this.price);
         dest.writeString(this.title);
         dest.writeString(this.subTitle);
         dest.writeString(this.description);
@@ -439,6 +450,7 @@ public class Main extends Application implements Parcelable {
         this.location = in.readString();
         this.deviceVersion = in.readInt();
         this.weight = in.readInt();
+        this.price = in.readInt();
         this.title = in.readString();
         this.subTitle = in.readString();
         this.description = in.readString();

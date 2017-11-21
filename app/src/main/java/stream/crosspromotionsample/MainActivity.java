@@ -1,16 +1,30 @@
 package stream.crosspromotionsample;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    String mTitleText;
+
+    FrameLayout mFragmentContainer;
+    FragmentManager mFragmentManager;
+    MainFragment mMainFragment;
+
+    Context mContext;
+    private final String mActivity = this.getClass().getSimpleName();
+
+    Boolean restore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +32,24 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mFragmentContainer = findViewById(R.id.fragment_container);
+
+        mFragmentManager = getSupportFragmentManager();
+
+            if (savedInstanceState != null) {
+
+                Log.d(mActivity, "Restore");
+                restore = savedInstanceState.getBoolean("restore");
+                mTitleText = savedInstanceState.getString("mTitleText");
+                LoadFragment(mTitleText);
+
+            } else {
+
+                restore = false;
+                mTitleText = Constants.SCREEN_MAIN;
+                LoadFragment(mTitleText);
+            }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -27,6 +59,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean("restore", true);
+        outState.putString("mTitleText", mTitleText);
     }
 
     @Override
@@ -58,8 +99,22 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void LoadFragment(String screen) {
+        Log.d("Menu", screen);
+        switch (screen) {
+            case Constants.SCREEN_MAIN:
+                mMainFragment = MainFragment.newInstance();
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, mMainFragment, Constants.SCREEN_MAIN)
+                        .commit();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_LOCATION = "location";
     public static final String KEY_DEVICEVERSION = "deviceversion";
     public static final String KEY_WEIGHT = "weight";
+    public static final String KEY_PRICE = "price";
     public static final String KEY_TITLE = "title";
     public static final String KEY_SUBTITLE = "subtitle";
     public static final String KEY_DESCRIPTION = "description";
@@ -68,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Table Query.
         String adsTable = "CREATE TABLE IF NOT EXISTS ads (_id INTEGER PRIMARY KEY AUTOINCREMENT, originalid INTEGER, fromid INTEGER, adtype INTEGER, segment TEXT, location TEXT, deviceversion INTEGER, " +
-                "weight INTEGER, title TEXT, subtitle TEXT, description TEXT, descriptionshort TEXT, category TEXT, rating INTEGER, installs INTEGER, " +
+                "weight INTEGER, price INTEGER, title TEXT, subtitle TEXT, description TEXT, descriptionshort TEXT, category TEXT, rating INTEGER, installs INTEGER, " +
                 "version TEXT, developer TEXT, email TEXT, address TEXT, website TEXT, linkurl TEXT, packagename TEXT, previewimageurl TEXT, imageurl TEXT, previewvideoimageurl TEXT, " +
                 "videourl TEXT, text1 TEXT, text2 TEXT, text3 TEXT, number1 INTEGER, number2 INTEGER, number3 INTEGER, " +
                 "createat INTEGER DEFAULT 0, updateat INTEGER DEFAULT 0, startat INTEGER DEFAULT 0, endat INTEGER DEFAULT 0, removeat INTEGER DEFAULT 0);";

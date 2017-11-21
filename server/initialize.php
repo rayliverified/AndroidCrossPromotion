@@ -11,6 +11,7 @@ try {
      * location - geo targeting.
      * deviceVersion - limit ad to supported devices only. Use integer values (e.g. Android Nougat  = 711)
      * weight - prioritize ad display frequency and order. Use 0-100.
+     * price - cost of app in cents. (e.g. $0.99 = 99).
      * title, description, descriptionShort, category, rating, installs, version, developer, email, address, website - app details.
      * subtitle - ad secondary text/tagline.
      * linkUrl - app link.
@@ -36,6 +37,7 @@ try {
 								location VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								deviceVersion int(11) UNSIGNED DEFAULT 0,
 								weight int(11) UNSIGNED DEFAULT 0,
+							    price int(11) UNSIGNED DEFAULT 0,
 								title varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								subtitle varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								description varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',

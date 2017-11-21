@@ -3,4 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#2D2D2D</color>
+    <color name="textSecondary">#8C8C8C</color>
+    <color name="textSecondaryDark">#757575</color>
+
+    <!-- Feed -->
+    <color name="feed_background">#fdfdfd</color>
+    <color name="feed_divider">#efefef</color>
+
+    <!-- Button -->
+    <color name="btn_install">#0f9d58</color>
+
+    <!-- Basic Colors -->
+    <color name="white">#FFFFFF</color>
 </resources>
