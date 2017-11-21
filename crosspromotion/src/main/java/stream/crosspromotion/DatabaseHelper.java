@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_ORIGINALID = "originalid";
     public static final String KEY_FROMID = "fromid";
     public static final String KEY_ADTYPE = "adtype";
+    public static final String KEY_STATUS = "status";
     public static final String KEY_SEGMENT = "segment";
     public static final String KEY_LOCATION = "location";
     public static final String KEY_DEVICEVERSION = "deviceversion";
@@ -68,11 +69,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Table Query.
-        String adsTable = "CREATE TABLE IF NOT EXISTS ads (_id INTEGER PRIMARY KEY AUTOINCREMENT, originalid INTEGER, fromid INTEGER, adtype INTEGER, segment TEXT, location TEXT, deviceversion INTEGER, " +
-                "weight INTEGER, price INTEGER, title TEXT, subtitle TEXT, description TEXT, descriptionshort TEXT, category TEXT, rating INTEGER, installs INTEGER, " +
-                "version TEXT, developer TEXT, email TEXT, address TEXT, website TEXT, linkurl TEXT, packagename TEXT, previewimageurl TEXT, imageurl TEXT, previewvideoimageurl TEXT, " +
-                "videourl TEXT, text1 TEXT, text2 TEXT, text3 TEXT, number1 INTEGER, number2 INTEGER, number3 INTEGER, " +
-                "createat INTEGER DEFAULT 0, updateat INTEGER DEFAULT 0, startat INTEGER DEFAULT 0, endat INTEGER DEFAULT 0, removeat INTEGER DEFAULT 0);";
+        String adsTable = "CREATE TABLE IF NOT EXISTS ads (_id INTEGER PRIMARY KEY AUTOINCREMENT, originalid INTEGER, fromid INTEGER, adtype INTEGER, status INTEGER, " +
+                "segment TEXT, location TEXT, deviceversion INTEGER, weight INTEGER, price INTEGER, title TEXT, subtitle TEXT, description TEXT, descriptionshort TEXT, " +
+                "category TEXT, rating INTEGER, installs INTEGER, version TEXT, developer TEXT, email TEXT, address TEXT, website TEXT, linkurl TEXT, packagename TEXT, " +
+                "previewimageurl TEXT, imageurl TEXT, previewvideoimageurl TEXT, videourl TEXT, text1 TEXT, text2 TEXT, text3 TEXT, number1 INTEGER, number2 INTEGER, " +
+                "number3 INTEGER, createat INTEGER DEFAULT 0, updateat INTEGER DEFAULT 0, startat INTEGER DEFAULT 0, endat INTEGER DEFAULT 0, removeat INTEGER DEFAULT 0);";
         String analyticsTable = "CREATE TABLE IF NOT EXISTS analytics (_id INTEGER PRIMARY KEY AUTOINCREMENT, analyticstype INTEGER, statid INTEGER, statint INTEGER, stattext TEXT, createat INTEGER DEFAULT 0, uploaded INTEGER DEFAULT 0);";
 
         //Execute Query

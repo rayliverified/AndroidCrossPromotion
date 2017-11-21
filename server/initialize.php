@@ -33,6 +33,7 @@ try {
 								id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 								fromUserId int(11) UNSIGNED DEFAULT 0,
 								adType int(11) UNSIGNED DEFAULT 0,
+								status int(11) UNSIGNED DEFAULT 0, 
 								segment VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								location VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								deviceVersion int(11) UNSIGNED DEFAULT 0,

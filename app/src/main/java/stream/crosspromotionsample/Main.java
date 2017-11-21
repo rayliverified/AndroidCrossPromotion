@@ -12,6 +12,7 @@ public class Main extends Application implements Parcelable {
     public long id;
     public long fromUserId;
     public int adType;
+    public int status;
     public String segment;
     public String location;
     public int deviceVersion;
@@ -124,6 +125,14 @@ public class Main extends Application implements Parcelable {
 
     public void setAdType(int adType) {
         this.adType = adType;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getSegment() {
@@ -407,6 +416,8 @@ public class Main extends Application implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.id);
         dest.writeLong(this.fromUserId);
+        dest.writeInt(this.adType);
+        dest.writeInt(this.status);
         dest.writeString(this.segment);
         dest.writeString(this.location);
         dest.writeInt(this.deviceVersion);
@@ -446,6 +457,8 @@ public class Main extends Application implements Parcelable {
     protected Main(Parcel in) {
         this.id = in.readLong();
         this.fromUserId = in.readLong();
+        this.adType = in.readInt();
+        this.status = in.readInt();
         this.segment = in.readString();
         this.location = in.readString();
         this.deviceVersion = in.readInt();
