@@ -3,6 +3,7 @@ package stream.crosspromotionsample;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -37,19 +38,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mFragmentManager = getSupportFragmentManager();
 
-            if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
 
-                Log.d(mActivity, "Restore");
-                restore = savedInstanceState.getBoolean("restore");
-                mTitleText = savedInstanceState.getString("mTitleText");
-                LoadFragment(mTitleText);
-
-            } else {
-
-                restore = false;
-                mTitleText = Constants.SCREEN_MAIN;
+            Log.d(mActivity, "Restore");
+            restore = savedInstanceState.getBoolean("restore");
+            mTitleText = savedInstanceState.getString("mTitleText");
+            Fragment f = mFragmentManager.findFragmentById(R.id.fragment_container);
+            if(f == null) {
                 LoadFragment(mTitleText);
             }
+        } else {
+
+            restore = false;
+            mTitleText = Constants.SCREEN_MAIN;
+            LoadFragment(mTitleText);
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
