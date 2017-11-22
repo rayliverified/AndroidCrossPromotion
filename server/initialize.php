@@ -207,6 +207,8 @@ try {
 
     echo "\r<br\r>Database Creation - END";
 
+    include 'sampledata.php';
+
 } catch (Exception $e) {
 
     die ($e->getMessage());

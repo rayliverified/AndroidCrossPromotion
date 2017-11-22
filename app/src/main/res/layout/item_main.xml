@@ -93,8 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/padding_smxx"
                 android:layout_gravity="center_horizontal"
-                android:text="List price: FREE"
-                android:textSize="10sp"
+                android:text="FREE"
+                android:textSize="12sp"
                 android:textColor="@color/btn_install"/>
 
             <TextView

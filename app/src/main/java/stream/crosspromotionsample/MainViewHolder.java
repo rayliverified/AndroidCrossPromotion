@@ -75,11 +75,11 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
 
         if (item.getPrice() == 0)
         {
-            mPrice.setText("List price: FREE");
+            mPrice.setText("FREE");
         }
         else
         {
-            mPrice.setText("List price: " + item.getPrice()/100);
+            mPrice.setText("$" + item.getPrice()/100);
         }
     }
 }

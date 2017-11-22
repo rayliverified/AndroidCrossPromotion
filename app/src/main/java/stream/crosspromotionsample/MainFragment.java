@@ -105,7 +105,7 @@ public class MainFragment extends Fragment {
 
         if (!restore)
         {
-//            getItems();
+            getItems();
         }
 
         return rootView;
