@@ -1,13 +1,10 @@
 <?php
-include_once("init.php");
 class db_connect
 {
-
     protected $db;
 
     protected function __construct($db = NULL)
     {
-
         if (is_object($db)) {
 
             $this->db = $db;
