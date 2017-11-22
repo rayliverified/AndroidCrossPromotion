@@ -18,23 +18,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
     ArrayList<Main> mList;
 
-    private RequestQueue mRequestQueue;
-    private ImageLoader mImageLoader;
     public final String mActivity = this.getClass().getSimpleName();
 
     public MainAdapter(Context context, ArrayList<Main> list) {
         mContext = context;
         mList = list;
-        mRequestQueue = Volley.newRequestQueue(context);
-        mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
-            public void putBitmap(String url, Bitmap bitmap) {
-                mCache.put(url, bitmap);
-            }
-            public Bitmap getBitmap(String url) {
-                return mCache.get(url);
-            }
-        });
     }
 
     @Override
@@ -48,7 +36,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(RecyclerView.ViewHolder genericHolder, final int position) {
         Main item = mList.get(position);
         MainViewHolder holder = (MainViewHolder) genericHolder;
-        holder.setItem(item, mImageLoader);
+        holder.setItem(item);
     }
 
     @Override

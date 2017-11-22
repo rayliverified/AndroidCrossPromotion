@@ -41,7 +41,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         mContext = itemView.getContext();
     }
 
-    public void setItem(final Main item, ImageLoader imageLoader) {
+    public void setItem(final Main item) {
 
         itemClick = new View.OnClickListener() {
             @Override
@@ -67,7 +67,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         mImage.setOnClickListener(itemClick);
         mBtnInstall.setOnClickListener(itemClick);
 
-        imageLoader.get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_verified_circle, R.drawable.icon_verified_circle));
+        VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_verified_circle, R.drawable.icon_verified_circle));
         mRating.setText(Double.toString(item.getRating()));
 
         mTitle.setText(item.getTitle());

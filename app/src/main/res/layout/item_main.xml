@@ -68,6 +68,7 @@
                 android:textStyle="bold"
                 android:drawableRight="@drawable/icon_verified_circle"
                 android:drawablePadding="5dp"/>
+
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
