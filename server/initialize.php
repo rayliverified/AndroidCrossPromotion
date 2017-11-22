@@ -42,7 +42,7 @@ try {
 								title varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								subtitle varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								description varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
-								descriptionShort varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
+								descriptionShort varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								category VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
 								rating DECIMAL(4, 3) NOT NULL DEFAULT 5.0,
 								installs int(11) UNSIGNED DEFAULT 0,

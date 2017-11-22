@@ -48,58 +48,59 @@ public class Main extends Application implements Parcelable {
     public int endAt;
     public int removeAt;
 
+    private final String mActivity = this.getClass().getSimpleName();
+
     public Main() {
 
     }
 
     public Main(JSONObject jsonData) {
         try {
-            if (!jsonData.getBoolean("error")) {
-
-                this.setId(jsonData.getLong("id"));
-                this.setFromUserId(jsonData.getLong("fromUserId"));
-                this.setAdType(jsonData.getInt("adType"));
-                this.setSegment(jsonData.getString("segment"));
-                this.setLocation(jsonData.getString("location"));
-                this.setDeviceVersion(jsonData.getInt("deviceVersion"));
-                this.setWeight(jsonData.getInt("weight"));
-                this.setPrice(jsonData.getInt("price"));
-                this.setTitle(jsonData.getString("title"));
-                this.setSubTitle(jsonData.getString("subtitle"));
-                this.setDescription(jsonData.getString("description"));
-                this.setDescriptionShort(jsonData.getString("descriptionShort"));
-                this.setCategory(jsonData.getString("category"));
-                this.setRating(jsonData.getDouble("rating"));
-                this.setInstalls(jsonData.getInt("installs"));
-                this.setDeveloper(jsonData.getString("developer"));
-                this.setEmail(jsonData.getString("email"));
-                this.setAddress(jsonData.getString("address"));
-                this.setWebsite(jsonData.getString("website"));
-                this.setLinkUrl(jsonData.getString("linkUrl"));
-                this.setMyPackageName(jsonData.getString("packageName"));
-                this.setPreviewImageUrl(jsonData.getString("previewImgUrl"));
-                this.setImageUrl(jsonData.getString("imgUrl"));
-                this.setPreviewVideoImageUrl(jsonData.getString("previewVideoImgUrl"));
-                this.setVideoUrl(jsonData.getString("videoUrl"));
-                this.setText1(jsonData.getString("text1"));
-                this.setText2(jsonData.getString("text2"));
-                this.setText3(jsonData.getString("text3"));
-                this.setNumber1(jsonData.getInt("number1"));
-                this.setNumber2(jsonData.getInt("number2"));
-                this.setNumber3(jsonData.getInt("number3"));
-                this.setCreateAt(jsonData.getInt("createAt"));
-                this.setUpdateAt(jsonData.getInt("updateAt"));
-                this.setStartAt(jsonData.getInt("startAt"));
-                this.setEndAt(jsonData.getInt("endAt"));
-                this.setRemoveAt(jsonData.getInt("removeAt"));
-            }
+            this.setId(jsonData.getLong("id"));
+            this.setFromUserId(jsonData.getLong("fromUserId"));
+            this.setAdType(jsonData.getInt("adType"));
+            this.setStatus(jsonData.getInt("status"));
+            this.setSegment(jsonData.getString("segment"));
+            this.setLocation(jsonData.getString("location"));
+            this.setDeviceVersion(jsonData.getInt("deviceVersion"));
+            this.setWeight(jsonData.getInt("weight"));
+            this.setPrice(jsonData.getInt("price"));
+            this.setTitle(jsonData.getString("title"));
+            this.setSubTitle(jsonData.getString("subtitle"));
+            this.setDescription(jsonData.getString("description"));
+            this.setDescriptionShort(jsonData.getString("descriptionShort"));
+            this.setCategory(jsonData.getString("category"));
+            this.setRating(jsonData.getDouble("rating"));
+            this.setInstalls(jsonData.getInt("installs"));
+            this.setVersion(jsonData.getString("version"));
+            this.setDeveloper(jsonData.getString("developer"));
+            this.setEmail(jsonData.getString("email"));
+            this.setAddress(jsonData.getString("address"));
+            this.setWebsite(jsonData.getString("website"));
+            this.setLinkUrl(jsonData.getString("linkUrl"));
+            this.setMyPackageName(jsonData.getString("packageName"));
+            this.setPreviewImageUrl(jsonData.getString("previewImgUrl"));
+            this.setImageUrl(jsonData.getString("imgUrl"));
+            this.setPreviewVideoImageUrl(jsonData.getString("previewVideoImgUrl"));
+            this.setVideoUrl(jsonData.getString("videoUrl"));
+            this.setText1(jsonData.getString("text1"));
+            this.setText2(jsonData.getString("text2"));
+            this.setText3(jsonData.getString("text3"));
+            this.setNumber1(jsonData.getInt("number1"));
+            this.setNumber2(jsonData.getInt("number2"));
+            this.setNumber3(jsonData.getInt("number3"));
+            this.setCreateAt(jsonData.getInt("createAt"));
+            this.setUpdateAt(jsonData.getInt("updateAt"));
+            this.setStartAt(jsonData.getInt("startAt"));
+            this.setEndAt(jsonData.getInt("endAt"));
+            this.setRemoveAt(jsonData.getInt("removeAt"));
         } catch (Throwable t) {
 
-            Log.e("Gift", "Could not parse malformed JSON: \"" + jsonData.toString() + "\"");
+            Log.e(mActivity, "Error JSON: \"" + jsonData.toString() + "\"");
 
         } finally {
 
-            Log.d("Gift", jsonData.toString());
+            Log.d(mActivity, "JSON: " + jsonData.toString());
         }
     }
 
