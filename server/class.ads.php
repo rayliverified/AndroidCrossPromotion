@@ -109,6 +109,68 @@ class ads extends db_connect
         return $result;
     }
 
+    public function add($ad)
+    {
+        $result = array("error" => false,
+            "error_code" => ERROR_SUCCESS,
+            "items" => array());
+
+        $currentTime = time();
+        $stmt = $this->db->prepare("INSERT INTO ads (fromUserId, adType, status, segment, location, deviceVersion, 
+weight, price, title, subtitle, description, descriptionShort, category, rating, installs, version, developer, email, address, 
+website, linkUrl, packageName, previewImgUrl, imgUrl, previewVideoImgUrl, videoUrl, text1, text2, text3, number1, number2,
+number3, createAt, updateAt, startAt, endAt) value (:fromUserId, :adType, :status, :segment, :location, :deviceVersion, 
+:weight, :price, :title, :subtitle, :description, :descriptionShort, :category, :rating, :installs, :version, :developer, 
+:email, :address, :website, :linkUrl, :packageName, :previewImgUrl, :imgUrl, :previewVideoImgUrl, :videoUrl, :text1, :text2, 
+:text3, :number1, :number2, :number3, :createAt, :updateAt, :startAt, :endAt)");
+        $stmt->bindParam('fromUserId', $ad['fromUserId'], PDO::PARAM_INT);
+        $stmt->bindParam('adType', $ad['adType'], PDO::PARAM_INT);
+        $stmt->bindParam('status', $ad['status'], PDO::PARAM_INT);
+        $stmt->bindParam('segment', $ad['segment'], PDO::PARAM_STR);
+        $stmt->bindParam('location', $ad['location'], PDO::PARAM_STR);
+        $stmt->bindParam('deviceVersion', $ad['deviceVersion'], PDO::PARAM_INT);
+        $stmt->bindParam('weight', $ad['weight'], PDO::PARAM_INT);
+        $stmt->bindParam('price', $ad['price'], PDO::PARAM_INT);
+        $stmt->bindParam('title', $ad['title'], PDO::PARAM_STR);
+        $stmt->bindParam('subtitle', $ad['subtitle'], PDO::PARAM_STR);
+        $stmt->bindParam('description', $ad['description'], PDO::PARAM_STR);
+        $stmt->bindParam('descriptionShort', $ad['descriptionShort'], PDO::PARAM_STR);
+        $stmt->bindParam('category', $ad['category'], PDO::PARAM_STR);
+        $stmt->bindParam('rating', $ad['rating'], PDO::PARAM_STR);
+        $stmt->bindParam('installs', $ad['installs'], PDO::PARAM_INT);
+        $stmt->bindParam('version', $ad['version'], PDO::PARAM_STR);
+        $stmt->bindParam('developer', $ad['developer'], PDO::PARAM_STR);
+        $stmt->bindParam('email', $ad['email'], PDO::PARAM_STR);
+        $stmt->bindParam('address', $ad['address'], PDO::PARAM_STR);
+        $stmt->bindParam('website', $ad['website'], PDO::PARAM_STR);
+        $stmt->bindParam('linkUrl', $ad['linkUrl'], PDO::PARAM_STR);
+        $stmt->bindParam('packageName', $ad['packageName'], PDO::PARAM_STR);
+        $stmt->bindParam('previewImgUrl', $ad['previewImgUrl'], PDO::PARAM_STR);
+        $stmt->bindParam('imgUrl', $ad['imgUrl'], PDO::PARAM_STR);
+        $stmt->bindParam('previewVideoImgUrl', $ad['previewVideoImgUrl'], PDO::PARAM_STR);
+        $stmt->bindParam('videoUrl', $ad['videoUrl'], PDO::PARAM_STR);
+        $stmt->bindParam('text1', $ad['text1'], PDO::PARAM_STR);
+        $stmt->bindParam('text2', $ad['text2'], PDO::PARAM_STR);
+        $stmt->bindParam('text3', $ad['text3'], PDO::PARAM_STR);
+        $stmt->bindParam('number1', $ad['number1'], PDO::PARAM_INT);
+        $stmt->bindParam('number2', $ad['number2'], PDO::PARAM_INT);
+        $stmt->bindParam('number3', $ad['number3'], PDO::PARAM_INT);
+        $stmt->bindParam('createAt', $currentTime, PDO::PARAM_INT);
+        $stmt->bindParam('updateAt', $currentTime, PDO::PARAM_INT);
+        $stmt->bindParam('startAt', $ad['startAt'], PDO::PARAM_INT);
+        $stmt->bindParam('endAt', $ad['endAt'], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            $result = array("error" => false,
+                "error_code" => ERROR_SUCCESS,
+                "itemId" => $this->db->lastInsertId(),
+                "item" => $this->info($this->db->lastInsertId()));
+        }
+
+        return $result;
+    }
+
     public function get($updateAt = 0)
     {
         $result = array("error" => false,

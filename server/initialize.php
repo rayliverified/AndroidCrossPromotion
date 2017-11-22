@@ -9,7 +9,7 @@ try {
      * adType - category type of app data returned.
      * segment - campaign A/B segmentation.
      * location - geo targeting.
-     * deviceVersion - limit ad to supported devices only. Use integer values (e.g. Android Nougat  = 711)
+     * deviceVersion - limit ad to supported devices only. Use minimum API values (e.g. Android Nougat  = 26)
      * weight - prioritize ad display frequency and order. Use 0-100.
      * price - cost of app in cents. (e.g. $0.99 = 99).
      * title, description, descriptionShort, category, rating, installs, version, developer, email, address, website - app details.
