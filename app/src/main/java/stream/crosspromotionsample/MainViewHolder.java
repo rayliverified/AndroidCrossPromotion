@@ -67,7 +67,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         mImage.setOnClickListener(itemClick);
         mBtnInstall.setOnClickListener(itemClick);
 
-        VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_verified_circle, R.drawable.icon_verified_circle));
+        VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
         mRating.setText(Double.toString(item.getRating()));
 
         mTitle.setText(item.getTitle());

@@ -131,7 +131,7 @@ Twitter - http://twitter.com/rayliverified",
         "weight" => 48,
         "price" => 0,
         "title" => "Doodle Donut",
-        "subtitle" => "Yummiest arcade game ever!",
+        "subtitle" => "Play the yummiest arcade game ever!",
         "description" => "Gameplay Highlights:
 ✓ Satisfy your donut cravings without gaining a single pound! 
 ✓ Feast on visually delightful doodle art!
