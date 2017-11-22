@@ -7,7 +7,7 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-public class Main extends Application implements Parcelable {
+public class Ad extends Application implements Parcelable {
 
     public long id;
     public long fromUserId;
@@ -50,11 +50,11 @@ public class Main extends Application implements Parcelable {
 
     private final String mActivity = this.getClass().getSimpleName();
 
-    public Main() {
+    public Ad() {
 
     }
 
-    public Main(JSONObject jsonData) {
+    public Ad(JSONObject jsonData) {
         try {
             this.setId(jsonData.getLong("id"));
             this.setFromUserId(jsonData.getLong("fromUserId"));
@@ -455,7 +455,7 @@ public class Main extends Application implements Parcelable {
         dest.writeInt(this.removeAt);
     }
 
-    protected Main(Parcel in) {
+    protected Ad(Parcel in) {
         this.id = in.readLong();
         this.fromUserId = in.readLong();
         this.adType = in.readInt();
@@ -496,15 +496,15 @@ public class Main extends Application implements Parcelable {
         this.removeAt = in.readInt();
     }
 
-    public static final Creator<Main> CREATOR = new Creator<Main>() {
+    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
         @Override
-        public Main createFromParcel(Parcel source) {
-            return new Main(source);
+        public Ad createFromParcel(Parcel source) {
+            return new Ad(source);
         }
 
         @Override
-        public Main[] newArray(int size) {
-            return new Main[size];
+        public Ad[] newArray(int size) {
+            return new Ad[size];
         }
     };
 }

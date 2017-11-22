@@ -28,14 +28,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainFragment extends Fragment {
+public class AdListFragment extends Fragment {
 
     TextView mMessage;
 
     RecyclerView mRecyclerView;
     MainAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
-    ArrayList<Main> mList;
+    ArrayList<Ad> mList;
 
     Boolean restore = false;
 
@@ -43,11 +43,11 @@ public class MainFragment extends Fragment {
     final String mActivity = this.getClass().getSimpleName();
     private static final String STATE_LIST = "State Adapter Data";
 
-    public MainFragment() {
+    public AdListFragment() {
     }
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static AdListFragment newInstance() {
+        return new AdListFragment();
     }
 
     @Override
@@ -145,7 +145,7 @@ public class MainFragment extends Fragment {
                                         for (int i = 0; i < itemsArray.length(); i++) {
 
                                             JSONObject itemObj = (JSONObject) itemsArray.get(i);
-                                            Main item = new Main(itemObj);
+                                            Ad item = new Ad(itemObj);
                                             mList.add(item);
                                         }
                                     }
@@ -216,11 +216,11 @@ public class MainFragment extends Fragment {
     public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
         Context mContext;
-        ArrayList<Main> mList;
+        ArrayList<Ad> mList;
 
         public final String mActivity = this.getClass().getSimpleName();
 
-        public MainAdapter(Context context, ArrayList<Main> list) {
+        public MainAdapter(Context context, ArrayList<Ad> list) {
             mContext = context;
             mList = list;
         }
@@ -234,7 +234,7 @@ public class MainFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(MainViewHolder holder, int position) {
-            Main item = mList.get(position);
+            Ad item = mList.get(position);
             holder.setItem(item);
         }
 
@@ -243,7 +243,7 @@ public class MainFragment extends Fragment {
             return mList.size();
         }
 
-        public Main getItem(int position) {
+        public Ad getItem(int position) {
             return mList.get(position);
         }
 
@@ -277,7 +277,7 @@ public class MainFragment extends Fragment {
                 mContext = itemView.getContext();
             }
 
-            public void setItem(final Main item) {
+            public void setItem(final Ad item) {
 
                 itemClick = new View.OnClickListener() {
                     @Override

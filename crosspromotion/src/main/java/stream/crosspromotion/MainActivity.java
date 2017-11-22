@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
-    MainFragment mMainFragment;
+    AdListFragment mMainFragment;
 
     Context mContext;
     private final String mActivity = this.getClass().getSimpleName();
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Menu", screen);
         switch (screen) {
             case Constants.SCREEN_MAIN:
-                mMainFragment = MainFragment.newInstance();
+                mMainFragment = AdListFragment.newInstance();
                 mFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, mMainFragment, Constants.SCREEN_MAIN)
                         .commit();
