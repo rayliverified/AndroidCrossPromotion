@@ -8,12 +8,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String AD_DEVELOPER_ID = "AD_DEVELOPER_ID";
+
     String mTitleText;
+    String developerUrl;
 
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
@@ -28,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mFragmentContainer = findViewById(R.id.fragment_container);
-
         mFragmentManager = getSupportFragmentManager();
+
+        if (getIntent() != null)
+        {
+            if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null)
+            {
+                developerUrl = getIntent().getStringExtra(AD_DEVELOPER_ID);
+            }
+        }
 
         if (savedInstanceState != null) {
 
@@ -64,11 +77,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem item = menu.findItem(R.id.menu_store);
+
+        if (developerUrl != null) {
+            item.setVisible(true);
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
+        int id = item.getItemId();
+        if (id == android.R.id.home)
+        {
+            onBackPressed();
+        }
+        else if (id == R.id.menu_store)
+        {
+            Utils.OpenDeveloperUrl(mContext, developerUrl);
         }
 
         return super.onOptionsItemSelected(item);

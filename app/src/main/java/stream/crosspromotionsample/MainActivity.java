@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(mContext, stream.crosspromotion.MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(stream.crosspromotion.MainActivity.AD_DEVELOPER_ID, "5700313618786177705");
             mContext.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
