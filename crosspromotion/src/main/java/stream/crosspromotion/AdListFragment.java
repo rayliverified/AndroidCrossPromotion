@@ -312,14 +312,16 @@ public class AdListFragment extends Fragment {
                 mImage.setOnClickListener(itemClick);
                 mBtnInstall.setOnClickListener(itemClick);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
                 {
-                    VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
+                    VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle_old, R.drawable.icon_apk_circle_old));
                 }
                 else
                 {
-                    VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle_old, R.drawable.icon_apk_circle_old));
-                }                mRating.setText(Double.toString(item.getRating()));
+                    VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
+                }
+
+                mRating.setText(Double.toString(item.getRating()));
 
                 mTitle.setText(item.getTitle());
                 mDescription.setText(item.getSubTitle());

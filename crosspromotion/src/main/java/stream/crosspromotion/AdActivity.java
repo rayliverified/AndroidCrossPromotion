@@ -26,15 +26,15 @@ public class AdActivity extends AppCompatActivity {
     AdListFragment mMainFragment;
 
     Context mContext;
-    private final String mActivity = this.getClass().getSimpleName();
+    private final String mActivity = AdActivity.this.getClass().getSimpleName();
 
     Boolean restore = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mContext = getApplicationContext();
+        AdActivity.this.setContentView(R.layout.activity_main);
+        mContext = AdActivity.this.getApplicationContext();
 
         if (getIntent() != null)
         {
@@ -52,14 +52,14 @@ public class AdActivity extends AppCompatActivity {
             }
         }
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
+        Toolbar toolbar = AdActivity.this.findViewById(R.id.toolbar);
+        AdActivity.this.setSupportActionBar(toolbar);
+        ActionBar actionBar = AdActivity.this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(title);
 
-        mFragmentContainer = findViewById(R.id.fragment_container);
-        mFragmentManager = getSupportFragmentManager();
+        mFragmentContainer = AdActivity.this.findViewById(R.id.fragment_container);
+        mFragmentManager = AdActivity.this.getSupportFragmentManager();
 
         if (savedInstanceState != null) {
 
