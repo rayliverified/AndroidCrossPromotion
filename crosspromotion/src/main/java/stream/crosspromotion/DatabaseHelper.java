@@ -68,10 +68,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //    public static final String KEY_CREATEAT = "createat";
     public static final String KEY_UPLOADED = "uploaded";
 
+    private static DatabaseHelper mInstance = null;
     public final String mActivity = this.getClass().getSimpleName();
 
     public DatabaseHelper(Context context) {
         super(context, DBName, null, DBVersion);
+    }
+
+    public static DatabaseHelper getInstance(Context context) {
+
+        if (mInstance == null) {
+            mInstance = new DatabaseHelper(context);
+        }
+        return mInstance;
     }
 
     @Override

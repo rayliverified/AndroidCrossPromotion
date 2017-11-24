@@ -56,7 +56,7 @@ public class AdListFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         mContext = getActivity().getApplicationContext();
-        dbHelper = new DatabaseHelper(mContext);
+        dbHelper = DatabaseHelper.getInstance(mContext);
 
         if (savedInstanceState != null) {
 
