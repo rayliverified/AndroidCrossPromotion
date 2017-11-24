@@ -9,4 +9,6 @@ public interface Constants {
     String API_FOLDER = "crosspromotion/";
 
     String METHOD_ADS_GET = API_DOMAIN + API_FOLDER + "ads.get.php";
+
+    int AD_LIMIT = 20;
 }

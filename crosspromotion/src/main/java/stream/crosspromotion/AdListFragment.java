@@ -36,6 +36,7 @@ public class AdListFragment extends Fragment {
     MainAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
     ArrayList<Ad> mList;
+    DatabaseHelper dbHelper;
 
     Boolean restore = false;
 
@@ -55,6 +56,7 @@ public class AdListFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         mContext = getActivity().getApplicationContext();
+        dbHelper = new DatabaseHelper(mContext);
 
         if (savedInstanceState != null) {
 
@@ -81,7 +83,7 @@ public class AdListFragment extends Fragment {
         mMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getItems();
+                GetItems();
             }
         });
 
@@ -101,7 +103,8 @@ public class AdListFragment extends Fragment {
 
         if (!restore)
         {
-            getItems();
+            LoadItems();
+            GetItems();
         }
 
         return rootView;
@@ -116,7 +119,7 @@ public class AdListFragment extends Fragment {
         outState.putParcelableArrayList(STATE_LIST, mList);
     }
 
-    public void getItems() {
+    public void GetItems() {
 
         Log.d(mActivity, "GetItems");
 
@@ -130,7 +133,6 @@ public class AdListFragment extends Fragment {
                         if (!isAdded() || getActivity() == null) {
 
                             Log.e(mActivity, "Fragment Not Added to Activity");
-
                             return;
                         }
 
@@ -141,13 +143,8 @@ public class AdListFragment extends Fragment {
 
                                     JSONArray itemsArray = response.getJSONArray("items");
                                     if (itemsArray.length() > 0) {
-
-                                        for (int i = 0; i < itemsArray.length(); i++) {
-
-                                            JSONObject itemObj = (JSONObject) itemsArray.get(i);
-                                            Ad item = new Ad(itemObj);
-                                            mList.add(item);
-                                        }
+                                        dbHelper.AddAdsBatch(itemsArray);
+                                        LoadItems();
                                     }
                                 }
                             }
@@ -155,9 +152,6 @@ public class AdListFragment extends Fragment {
 
                             e.printStackTrace();
 
-                        } finally {
-
-                            FinishLoad();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -178,13 +172,27 @@ public class AdListFragment extends Fragment {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("clientId", Constants.CLIENT_ID);
-//                params.put("updateAt", Integer.toString(0));
+                params.put("updateAt", Integer.toString(dbHelper.GetAdsLatestUpdate(dbHelper.GetMaxAdID(), Constants.AD_LIMIT)));
 
                 return params;
             }
         };
 
         VolleySingleton.getInstance(mContext).addToRequestQueue(jsonReq);
+    }
+
+    public void LoadItems() {
+
+        ArrayList<Ad> items;
+        if (mList != null && !mList.isEmpty()) {
+            items = dbHelper.GetAds(Constants.AD_LIMIT);
+        } else {
+            mList.clear();
+            items = dbHelper.GetAds(Constants.AD_LIMIT);
+        }
+        mList.addAll(items);
+
+        FinishLoad();
     }
 
     public void FinishLoad() {
