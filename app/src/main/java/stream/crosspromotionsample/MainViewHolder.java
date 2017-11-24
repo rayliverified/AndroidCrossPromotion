@@ -3,6 +3,7 @@ package stream.crosspromotionsample;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,7 +68,15 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         mImage.setOnClickListener(itemClick);
         mBtnInstall.setOnClickListener(itemClick);
 
-        VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+            VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
+        }
+        else
+        {
+            VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle_old, R.drawable.icon_apk_circle_old));
+        }
+
         mRating.setText(Double.toString(item.getRating()));
 
         mTitle.setText(item.getTitle());

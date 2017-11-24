@@ -69,10 +69,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_UPLOADED = "uploaded";
 
     private static DatabaseHelper mInstance = null;
+    public Context mContext;
     public final String mActivity = this.getClass().getSimpleName();
 
     public DatabaseHelper(Context context) {
         super(context, DBName, null, DBVersion);
+        mContext = context;
     }
 
     public static DatabaseHelper getInstance(Context context) {
@@ -122,6 +124,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Ad> GetAds(Integer limit) {
+        Log.d("Package Name", mContext.getPackageName());
         ArrayList<Ad> itemList = new ArrayList<>();
         Date currentDate = new Date();
         Long currentTime = currentDate.getTime() / 1000;

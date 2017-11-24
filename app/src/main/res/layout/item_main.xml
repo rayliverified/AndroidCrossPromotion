@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical">
@@ -21,7 +22,7 @@
                 android:id="@+id/image"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/icon_apk_circle"
+                android:src="@drawable/icon_apk_circle_old"
                 android:scaleType="fitCenter"/>
 
             <TextView
@@ -42,7 +43,7 @@
                 android:textSize="10sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:drawableRight="@drawable/icon_star_tiny"
+                android:drawableRight="@drawable/icon_star_tiny_old"
                 android:drawablePadding="@dimen/padding_smxx"
                 android:background="@drawable/bg_rrect_rating_selector"/>
         </LinearLayout>
@@ -66,7 +67,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/textPrimary"
                 android:textStyle="bold"
-                android:drawableRight="@drawable/icon_verified_circle"
+                android:drawableRight="@drawable/icon_verified_circle_old"
                 android:drawablePadding="5dp"/>
 
             <TextView
@@ -108,7 +109,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:drawableLeft="@drawable/icon_plus_fit_white"
+                android:drawableLeft="@drawable/icon_plus_fit_white_old"
                 android:background="@drawable/bg_rrect_install_selector"
                 android:clickable="true"
                 android:focusable="true"/>
