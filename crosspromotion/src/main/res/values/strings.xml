@@ -2,5 +2,6 @@
     <string name="app_name">CrossPromotion</string>
     <string name="developer_id">8647251961827166428</string>
 
+    <string name="title">More Great Apps</string>
     <string name="action_store">More Apps</string>
 </resources>

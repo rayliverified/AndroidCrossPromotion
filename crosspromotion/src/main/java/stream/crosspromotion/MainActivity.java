@@ -14,9 +14,11 @@ import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String AD_TITLE = "AD_TITLE";
     public static String AD_DEVELOPER_ID = "AD_DEVELOPER_ID";
 
     String mTitleText;
+    String title;
     String developerUrl;
 
     FrameLayout mFragmentContainer;
@@ -34,21 +36,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-        mFragmentContainer = findViewById(R.id.fragment_container);
-        mFragmentManager = getSupportFragmentManager();
-
         if (getIntent() != null)
         {
             if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null)
             {
                 developerUrl = getIntent().getStringExtra(AD_DEVELOPER_ID);
             }
+            if (getIntent().getStringExtra(AD_TITLE) != null)
+            {
+                title = getIntent().getStringExtra(AD_TITLE);
+            }
+            else
+            {
+                title = getString(R.string.title);
+            }
         }
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(title);
+
+        mFragmentContainer = findViewById(R.id.fragment_container);
+        mFragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
 

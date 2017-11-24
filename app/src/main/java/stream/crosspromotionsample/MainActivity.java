@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(mContext, stream.crosspromotion.MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(stream.crosspromotion.MainActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
+            intent.putExtra(stream.crosspromotion.MainActivity.AD_TITLE, "More Apps by Stream Inc");
             mContext.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
