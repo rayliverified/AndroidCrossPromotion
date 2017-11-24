@@ -41,11 +41,10 @@
                 android:text="5.0"
                 android:textSize="10sp"
                 android:textColor="@color/white"
-                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
                 android:drawableRight="@drawable/icon_star_tiny"
                 android:drawablePadding="@dimen/padding_smxx"
-                android:background="@drawable/bg_rrect_rating_selector"
-                android:elevation="2dp"/>
+                android:background="@drawable/bg_rrect_rating_selector"/>
         </LinearLayout>
 
         <LinearLayout
@@ -111,8 +110,8 @@
                 android:textStyle="bold"
                 android:drawableLeft="@drawable/icon_plus_fit_white"
                 android:background="@drawable/bg_rrect_install_selector"
-                android:elevation="2dp"
-                android:clickable="true"/>
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
     </LinearLayout>
 
