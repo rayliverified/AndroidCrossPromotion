@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class AdActivity extends AppCompatActivity {
 
     public static String AD_TITLE = "AD_TITLE";
     public static String AD_DEVELOPER_ID = "AD_DEVELOPER_ID";

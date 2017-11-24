@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import stream.crosspromotion.AdActivity;
 import stream.crosspromotion.AdListFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,10 +94,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent intent = new Intent(mContext, stream.crosspromotion.MainActivity.class);
+            Intent intent = new Intent(mContext, AdActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(stream.crosspromotion.MainActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
-            intent.putExtra(stream.crosspromotion.MainActivity.AD_TITLE, "More Apps from Stream Inc");
+            intent.putExtra(AdActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
+            intent.putExtra(AdActivity.AD_TITLE, "More Apps from Stream Inc");
             mContext.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
