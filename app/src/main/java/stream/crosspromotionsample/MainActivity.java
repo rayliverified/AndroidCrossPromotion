@@ -15,13 +15,15 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import stream.crosspromotion.AdListFragment;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     String mTitleText;
 
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
-    MainFragment mMainFragment;
+    AdListFragment mAdListFragment;
 
     Context mContext;
     private final String mActivity = this.getClass().getSimpleName();
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         mFragmentContainer = findViewById(R.id.fragment_container);
-
         mFragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
@@ -118,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.d("Menu", screen);
         switch (screen) {
             case Constants.SCREEN_MAIN:
-                mMainFragment = MainFragment.newInstance();
+                mAdListFragment = AdListFragment.newInstance();
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, mMainFragment, Constants.SCREEN_MAIN)
+                        .replace(R.id.fragment_container, mAdListFragment, Constants.SCREEN_MAIN)
                         .commit();
                 break;
             default:
