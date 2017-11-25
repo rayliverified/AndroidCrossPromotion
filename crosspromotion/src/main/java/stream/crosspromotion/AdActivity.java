@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 public class AdActivity extends AppCompatActivity {
@@ -33,13 +36,6 @@ public class AdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acp);
         mContext = getApplicationContext();
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-        {
-            Log.d("Hide", "ActionBar");
-            actionBar.hide();
-        }
-
         if (getIntent() != null)
         {
             if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null)
@@ -61,7 +57,7 @@ public class AdActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(title);
 
-        mFragmentContainer = findViewById(R.id.fragment_ad);
+        mFragmentContainer = findViewById(R.id.fragment_adcontainer);
         mFragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
@@ -69,7 +65,7 @@ public class AdActivity extends AppCompatActivity {
             Log.d(mActivity, "Restore");
             restore = savedInstanceState.getBoolean("restore");
             mTitleText = savedInstanceState.getString("mTitleText");
-            Fragment f = mFragmentManager.findFragmentById(R.id.fragment_ad);
+            Fragment f = mFragmentManager.findFragmentById(R.id.fragment_adcontainer);
             if(f == null) {
                 LoadFragment(mTitleText);
             }
@@ -90,13 +86,44 @@ public class AdActivity extends AppCompatActivity {
         outState.putString("mTitleText", mTitleText);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem item = menu.findItem(R.id.menu_store);
+        if (developerUrl != null) {
+            item.setVisible(true);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home)
+        {
+            onBackPressed();
+        }
+        else if (id == R.id.menu_store)
+        {
+            Utils.OpenDeveloperUrl(mContext, developerUrl);
+        }
+
+        return super.onOptionsItemSelected(item);
+
+    }
+
+
     public void LoadFragment(String screen) {
         Log.d("Menu", screen);
         switch (screen) {
             case Constants.SCREEN_MAIN:
                 mAdListFragment = AdListFragment.newInstance();
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_ad, mMainFragment, Constants.SCREEN_MAIN)
+                        .replace(R.id.fragment_adcontainer, mAdListFragment, Constants.SCREEN_MAIN)
                         .commit();
                 break;
             default:
