@@ -33,7 +33,7 @@ public class AdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_acp);
         mContext = getApplicationContext();
 
         if (getIntent() != null)
@@ -54,11 +54,10 @@ public class AdActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle(title);
 
-        mFragmentContainer = findViewById(R.id.fragment_container);
+        mFragmentContainer = findViewById(R.id.fragment_ad);
         mFragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
@@ -66,7 +65,7 @@ public class AdActivity extends AppCompatActivity {
             Log.d(mActivity, "Restore");
             restore = savedInstanceState.getBoolean("restore");
             mTitleText = savedInstanceState.getString("mTitleText");
-            Fragment f = mFragmentManager.findFragmentById(R.id.fragment_container);
+            Fragment f = mFragmentManager.findFragmentById(R.id.fragment_ad);
             if(f == null) {
                 LoadFragment(mTitleText);
             }
@@ -119,7 +118,7 @@ public class AdActivity extends AppCompatActivity {
             case Constants.SCREEN_MAIN:
                 mMainFragment = AdListFragment.newInstance();
                 mFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, mMainFragment, Constants.SCREEN_MAIN)
+                        .replace(R.id.fragment_ad, mMainFragment, Constants.SCREEN_MAIN)
                         .commit();
                 break;
             default:

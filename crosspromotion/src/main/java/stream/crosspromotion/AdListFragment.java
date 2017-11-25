@@ -78,7 +78,7 @@ public class AdListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_acp, container, false);
 
         mMessage = rootView.findViewById(R.id.message);
         mMessage.setOnClickListener(new View.OnClickListener() {
