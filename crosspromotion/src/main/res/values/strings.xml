@@ -4,4 +4,6 @@
 
     <string name="title">More Great Apps</string>
     <string name="action_store">More Apps</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

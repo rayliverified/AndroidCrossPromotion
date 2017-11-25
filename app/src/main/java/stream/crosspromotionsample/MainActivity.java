@@ -3,22 +3,20 @@ package stream.crosspromotionsample;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import stream.crosspromotion.AdActivity;
 import stream.crosspromotion.AdListFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     String mTitleText;
 
@@ -37,11 +35,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         mFragmentContainer = findViewById(R.id.fragment_container);
         mFragmentManager = getSupportFragmentManager();
+
+        ActionBar();
 
         if (savedInstanceState != null) {
 
@@ -58,15 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mTitleText = Constants.SCREEN_MAIN;
             LoadFragment(mTitleText);
         }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -76,44 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         outState.putBoolean("restore", true);
         outState.putString("mTitleText", mTitleText);
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            Intent intent = new Intent(mContext, AdActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(AdActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
-            intent.putExtra(AdActivity.AD_TITLE, "More Apps from Stream Inc");
-            mContext.startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     public void LoadFragment(String screen) {
@@ -128,5 +78,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 break;
         }
+    }
+
+    private void ActionBar() {
+        ActionBar toolBar = getSupportActionBar();
+        toolBar.setDisplayShowCustomEnabled(true);
+        toolBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        toolBar.setCustomView(R.layout.toolbar_home);
+        toolBar.setElevation(0);
+        Toolbar parent = (Toolbar) toolBar.getCustomView().getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        ImageView toolbarIcon = findViewById(R.id.toolbar_icon);
+        toolbarIcon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AdActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra(AdActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
+                intent.putExtra(AdActivity.AD_TITLE, "More Apps from Stream Inc");
+                mContext.startActivity(intent);
+            }
+        });
     }
 }
