@@ -124,7 +124,7 @@ public class AdListFragment extends Fragment {
 
         Log.d(mActivity, "GetItems");
 
-        CustomRequest jsonReq = new CustomRequest(Request.Method.POST, Constants.METHOD_ADS_GET, null,
+        AdRequest jsonReq = new AdRequest(Request.Method.POST, Constants.METHOD_ADS_GET, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

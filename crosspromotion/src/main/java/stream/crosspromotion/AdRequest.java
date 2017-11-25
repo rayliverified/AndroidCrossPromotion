@@ -14,20 +14,20 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-public class CustomRequest extends Request<JSONObject> {
+public class AdRequest extends Request<JSONObject> {
 
     private Listener<JSONObject> listener;
     private Map<String, String> params;
 
-    public CustomRequest(String url, Map<String, String> params,
-                         Listener<JSONObject> reponseListener, ErrorListener errorListener) {
+    public AdRequest(String url, Map<String, String> params,
+                     Listener<JSONObject> reponseListener, ErrorListener errorListener) {
         super(Method.GET, url, errorListener);
         this.listener = reponseListener;
         this.params = params;
     }
 
-    public CustomRequest(int method, String url, Map<String, String> params,
-                         Listener<JSONObject> reponseListener, ErrorListener errorListener) {
+    public AdRequest(int method, String url, Map<String, String> params,
+                     Listener<JSONObject> reponseListener, ErrorListener errorListener) {
         super(method, url, errorListener);
         this.listener = reponseListener;
         this.params = params;
