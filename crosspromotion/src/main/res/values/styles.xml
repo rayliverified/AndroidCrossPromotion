@@ -1,5 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-
+<resources>
     <style name="AdTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

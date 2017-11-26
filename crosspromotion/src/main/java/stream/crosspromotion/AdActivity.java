@@ -50,12 +50,12 @@ public class AdActivity extends AppCompatActivity {
             {
                 title = getString(R.string.title);
             }
+            AdActivity.this.setTitle(title);
         }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle(title);
 
         mFragmentContainer = findViewById(R.id.fragment_adcontainer);
         mFragmentManager = getSupportFragmentManager();
