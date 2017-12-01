@@ -1,6 +1,5 @@
-[![GitHub release](https://img.shields.io/github/release/searchy2/AndroidCrossPromotion.svg?style=flat-square)](https://github.com/searchy2/AndroidCrossPromotion/releases) [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/searchy2/AndroidCrossPromotion.svg?style=flat-square)](https://github.com/searchy2/AndroidCrossPromotion) 
-[![Github file size](https://img.shields.io/badge/Size-91 KB-e91e63.svg?style=flat-square)](http://www.methodscount.com/?lib=com.github.searchy2%3AAndroidCrossPromotion%3A1.3.1)
-[![Library methods count](https://img.shields.io/badge/Methods count-332-e91e63.svg?style=flat-square)](http://www.methodscount.com/?lib=com.github.searchy2%3AAndroidCrossPromotion%3A1.3.1)
+[![GitHub release](https://img.shields.io/github/release/searchy2/AndroidCrossPromotion.svg?style=flat-square)](https://github.com/searchy2/AndroidCrossPromotion/releases) [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/searchy2/AndroidCrossPromotion.svg?style=flat-square)](https://github.com/searchy2/AndroidCrossPromotion) [![Github file size](https://img.shields.io/badge/Size-91%20KB-e91e63.svg?style=flat-square)](http://www.methodscount.com/?lib=com.github.searchy2%3AAndroidCrossPromotion%3A1.3.1) [![Library methods count](https://img.shields.io/badge/Methods%20count-332-e91e63.svg?style=flat-square)](http://www.methodscount.com/?lib=com.github.searchy2%3AAndroidCrossPromotion%3A1.3.1)
+
 # Android Cross Promotion
 
 Android Cross Promotion is a self hosted cross promotion platform for your own apps. Advertise your own apps within your apps easily. Setup in under 20 minutes!
