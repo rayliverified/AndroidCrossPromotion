@@ -24,6 +24,7 @@ public class Utils {
     public static void OpenDeveloperUrl(Context context, String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://play.google.com/store/apps/dev?id=" + url));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
