@@ -34,7 +34,7 @@ public class AdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acp);
-        mContext = getApplicationContext();
+        mContext = getApplication().getApplicationContext();
 
         if (getIntent() != null)
         {
