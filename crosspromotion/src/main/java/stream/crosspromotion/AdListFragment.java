@@ -185,10 +185,10 @@ public class AdListFragment extends Fragment {
     public void LoadItems() {
 
         ArrayList<Ad> items;
+        mList.clear();
         if (mList != null && !mList.isEmpty()) {
             items = dbHelper.GetAds(Constants.AD_LIMIT);
         } else {
-            mList.clear();
             items = dbHelper.GetAds(Constants.AD_LIMIT);
         }
         mList.addAll(items);
