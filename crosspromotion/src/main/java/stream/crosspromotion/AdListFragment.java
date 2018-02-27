@@ -2,6 +2,8 @@ package stream.crosspromotion;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -124,62 +126,74 @@ public class AdListFragment extends Fragment {
 
         Log.d(mActivity, "GetItems");
 
-        CustomRequest jsonReq = new CustomRequest(Request.Method.POST, Constants.METHOD_ADS_GET, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        String getAds = null;
+        try {
+            ApplicationInfo ai = mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
+            Object value = ai.metaData.get("CustomAds");
+            getAds = value.toString();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
-                        Log.d(mActivity, "Ads JSON: " + response.toString());
+        if (getAds != null)
+        {
+            CustomRequest jsonReq = new CustomRequest(Request.Method.POST, getAds, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
 
-                        if (!isAdded() || getActivity() == null) {
+                            Log.d(mActivity, "Ads JSON: " + response.toString());
 
-                            Log.e(mActivity, "Fragment Not Added to Activity");
-                            return;
-                        }
+                            if (!isAdded() || getActivity() == null) {
 
-                        try {
-                            if (!response.getBoolean("error")) {
+                                Log.e(mActivity, "Fragment Not Added to Activity");
+                                return;
+                            }
 
-                                if (response.has("items")) {
+                            try {
+                                if (!response.getBoolean("error")) {
 
-                                    JSONArray itemsArray = response.getJSONArray("items");
-                                    if (itemsArray.length() > 0) {
-                                        dbHelper.AddAdsBatch(itemsArray);
-                                        LoadItems();
+                                    if (response.has("items")) {
+
+                                        JSONArray itemsArray = response.getJSONArray("items");
+                                        if (itemsArray.length() > 0) {
+                                            dbHelper.AddAdsBatch(itemsArray);
+                                            LoadItems();
+                                        }
                                     }
                                 }
+                            } catch (JSONException e) {
+
+                                e.printStackTrace();
+
                             }
-                        } catch (JSONException e) {
-
-                            e.printStackTrace();
-
                         }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    if (!isAdded() || getActivity() == null) {
+
+                        Log.e(mActivity, "Fragment Not Added to Activity");
+                        return;
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                if (!isAdded() || getActivity() == null) {
-
-                    Log.e(mActivity, "Fragment Not Added to Activity");
-                    return;
+                    Log.e(mActivity, "Error: " + error.toString());
+                    FinishLoad();
                 }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("clientId", Constants.CLIENT_ID);
+                    params.put("updateAt", Integer.toString(dbHelper.GetAdsLatestUpdate(dbHelper.GetMaxAdID(), Constants.AD_LIMIT)));
 
-                Log.e(mActivity, "Error: " + error.toString());
-                FinishLoad();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("clientId", Constants.CLIENT_ID);
-                params.put("updateAt", Integer.toString(dbHelper.GetAdsLatestUpdate(dbHelper.GetMaxAdID(), Constants.AD_LIMIT)));
+                    return params;
+                }
+            };
 
-                return params;
-            }
-        };
-
-        VolleySingleton.getInstance(mContext).addToRequestQueue(jsonReq);
+            VolleySingleton.getInstance(mContext).addToRequestQueue(jsonReq);
+        }
     }
 
     public void LoadItems() {

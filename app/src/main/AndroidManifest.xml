@@ -14,6 +14,8 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
 
+        <meta-data android:value="http://apprewards.org/crosspromotion/ads.get.php" android:name="CustomAds"/>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

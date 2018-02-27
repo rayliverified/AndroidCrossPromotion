@@ -4,6 +4,7 @@
 
     <application android:label="@string/app_name"
                  android:theme="@style/AdTheme">
+
         <activity
             android:name=".AdActivity"
             android:label="@string/app_name"
