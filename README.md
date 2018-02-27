@@ -100,6 +100,13 @@ implementation 'com.android.support:design:latest-version'
 implementation 'com.android.volley:volley:latest-version'
 ```
 
+### Server Declaration
+Declare your custom ad server URL by adding a `CustomAds` metavalue to AndroidManifest.xml.
+
+```java
+<meta-data android:value="http://apprewards.org/crosspromotion/" android:name="CustomAds"/>
+```
+
 ### Manifest Override
 Add `tools:replace="android:theme"` to your application tag in AndroidManifest.xml.
 

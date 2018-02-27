@@ -126,18 +126,18 @@ public class AdListFragment extends Fragment {
 
         Log.d(mActivity, "GetItems");
 
-        String getAds = null;
+        String adServer = null;
         try {
             ApplicationInfo ai = mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
             Object value = ai.metaData.get("CustomAds");
-            getAds = value.toString();
+            adServer = value.toString();
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
 
-        if (getAds != null)
+        if (adServer != null)
         {
-            CustomRequest jsonReq = new CustomRequest(Request.Method.POST, getAds, null,
+            CustomRequest jsonReq = new CustomRequest(Request.Method.POST, adServer + Constants.METHOD_ADS_GET, null,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
