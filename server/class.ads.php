@@ -47,6 +47,26 @@ class ads extends db_connect
         return $result;
     }
 
+    public function existsApp($app)
+    {
+        $result = array("error" => true,
+            "error_code" => ERROR_UNKNOWN);
+
+        $stmt = $this->db->prepare("SELECT * FROM ads WHERE packageName = (:packageName) LIMIT 1");
+        $stmt->bindParam(":packageName", $app, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            if ($stmt->rowCount() > 0) {
+
+                $result = array("error" => false,
+                    "error_code" => ERROR_SUCCESS);
+            }
+        }
+
+        return $result;
+    }
+
     public function info($adsId)
     {
         $result = array("error" => true,

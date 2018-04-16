@@ -6,6 +6,7 @@ try {
     $currentTime = time();
     $ads = new ads($dbo);
 
+
     $ad = array("fromUserId" => 1,
         "adType" => 0,
         "status" => 0,
@@ -13,6 +14,64 @@ try {
         "location" => "Global",
         "deviceVersion" => 21,
         "weight" => 50,
+        "price" => 0,
+        "title" => "Message AI - Write Better Messages (Free)",
+        "subtitle" => "Send better, more positive messages and improve relationships 💝",
+        "description" => "Have you ever sent a text you later regretted? Maybe you were too negative or angry at the time. Message AI warns you when you're about to send a message that could harm your relationships!
+
+In addition, Message AI helps you understand how people really feel by analyzing conversations in Messenger, WhatsApp, Tinder, Snapchat, Kik, Instagram, and Line. All messaging apps are supported!
+
+<b>How it works: </b>
+Our MessageIQ artificial intelligence analyzes your messages and shows you your Positivity Score. We score each word from -100 to 100 so you can identify positive/negative emotions.
+
+Better communication is the #1 way to improve relationships. Many people don't realize how angry they sound when tired and end up hurting the people they care about unintentionally! 
+
+<b>We're in this together</b>
+Message AI is the friend that always looks out for you. We'll not only warn you if you sound negative, we'll also show you when your friends are being negative. 
+
+<b>Features: </b>
+Find out if your crush likes you back ❤️
+Who secretly likes you? Discover your secret admirers 😙
+Monitor your relationship with artificial intelligence!
+Be more positive and increase your likability 🔥
+Identify passive aggressiveness so you can defuse toxic situations.
+Uncover hidden attitudes people have. How do people REALLY feel?
+Pick up on warning signals that someone's about to ghost you with AI 👻
+Build better relationships with improve communication. 
+Be a better friend and more positive person!",
+        "descriptionShort" => "Message AI helps you sound more positive in your messages, increasing your likability and improving relationships 💝",
+        "category" => "Social",
+        "rating" => 5.0,
+        "installs" => 500,
+        "version" => "0.9.4",
+        "developer" => "Straight Up",
+        "email" => "support@messageai.co",
+        "address" => "Kansas City, Kansas",
+        "website" => "http://messageai.co",
+        "linkUrl" => "https://play.google.com/store/apps/details?id=ai.message.lite",
+        "packageName" => "ai.message.lite",
+        "previewImgUrl" => "https://lh3.googleusercontent.com/5wtW75qqbqk1-iprBeW4hAxy6iw56zX6EQ8mRBfoUlWWZtxYDpvtZw8EnjpdjJ7VnAUg=s128-rw",
+        "imgUrl" => "https://lh3.googleusercontent.com/5wtW75qqbqk1-iprBeW4hAxy6iw56zX6EQ8mRBfoUlWWZtxYDpvtZw8EnjpdjJ7VnAUg=s256-rw",
+        "previewVideoImgUrl" => "https://lh3.googleusercontent.com/gTxlSPIPzfe1NoBsryU5dkw5I9kuJRE6RsznCWav76MaoKHfm0YwbD7oF4AbuAxe6QE=w360",
+        "videoUrl" => "",
+        "text1" => "",
+        "text2" => "",
+        "text3" => "",
+        "number1" => 0,
+        "number2" => 0,
+        "number3" => 0,
+        "startAt" => $currentTime,
+        "endAt" => 2000000000);
+    $ads->add($ad);
+    unset($ad);
+
+    $ad = array("fromUserId" => 1,
+        "adType" => 0,
+        "status" => 0,
+        "segment" => "Default",
+        "location" => "Global",
+        "deviceVersion" => 21,
+        "weight" => 49,
         "price" => 0,
         "title" => "Crowdfunding Projects",
         "subtitle" => "Browse all crowdfunding projects in one app!",
@@ -40,10 +99,10 @@ Email - admin@crowdfunding.stream",
         "category" => "Social",
         "rating" => 5.0,
         "installs" => 10000,
-        "version" => "3.7.1",
+        "version" => "4.3.1",
         "developer" => "Stream Inc",
         "email" => "admin@crowdfunding.stream",
-        "address" => "801 Eldridge St.",
+        "address" => "Kansas City, Kansas",
         "website" => "http://crowdfunding.stream",
         "linkUrl" => "https://play.google.com/store/apps/details?id=io.ideastarter",
         "packageName" => "io.ideastarter",
@@ -68,7 +127,7 @@ Email - admin@crowdfunding.stream",
         "segment" => "Default",
         "location" => "Global",
         "deviceVersion" => 15,
-        "weight" => 49,
+        "weight" => 48,
         "price" => 0,
         "title" => "Rocket Notes",
         "subtitle" => "The World's Fastest Note Taking App!",
@@ -100,10 +159,10 @@ Twitter - http://twitter.com/rayliverified",
         "category" => "Productivity",
         "rating" => 5.0,
         "installs" => 500,
-        "version" => "1.3.1",
+        "version" => "1.5.0",
         "developer" => "Stream Inc",
         "email" => "admin@apprewards.org",
-        "address" => "801 Eldridge St.",
+        "address" => "Kansas City, Kansas",
         "website" => "http://apprewards.org/rocketnotes/index.html",
         "linkUrl" => "https://play.google.com/store/apps/details?id=stream.rocketnotes",
         "packageName" => "stream.rocketnotes",
@@ -128,7 +187,7 @@ Twitter - http://twitter.com/rayliverified",
         "segment" => "Default",
         "location" => "Global",
         "deviceVersion" => 15,
-        "weight" => 48,
+        "weight" => 47,
         "price" => 0,
         "title" => "Doodle Donut",
         "subtitle" => "Play the yummiest arcade game ever!",
@@ -165,7 +224,7 @@ Twitter - http://twitter.com/rayliverified",
         "version" => "6.0",
         "developer" => "Stream Inc",
         "email" => "admin@apprewards.org",
-        "address" => "801 Eldridge St.",
+        "address" => "Kansas City, Kansas",
         "website" => "http://apprewards.org/doodledonut/index.html",
         "linkUrl" => "https://play.google.com/store/apps/details?id=com.DoodleDonut",
         "packageName" => "com.DoodleDonut",
@@ -190,7 +249,7 @@ Twitter - http://twitter.com/rayliverified",
         "segment" => "Default",
         "location" => "Global",
         "deviceVersion" => 15,
-        "weight" => 47,
+        "weight" => 46,
         "price" => 0,
         "title" => "Blank Icon/Widget",
         "subtitle" => "100% transparent app icon and widgets.",
@@ -210,9 +269,9 @@ Twitter - http://twitter.com/rayliverified",
         "category" => "Tools",
         "rating" => 5.0,
         "installs" => 10000,
-        "version" => "2.1.2",
+        "version" => "2.3.2",
         "developer" => "Stream Inc",
-        "email" => "admin@apprewards.org",
+        "email" => "Kansas City, Kansas",
         "address" => "801 Eldridge St.",
         "website" => "http://apprewards.org/blankicon/index.html",
         "linkUrl" => "https://play.google.com/store/apps/details?id=com.blankicon",
