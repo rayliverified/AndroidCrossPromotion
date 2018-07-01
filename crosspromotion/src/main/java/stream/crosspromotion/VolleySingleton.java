@@ -2,7 +2,7 @@ package stream.crosspromotion;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.util.LruCache;
+import androidx.collection.LruCache;
 import android.text.TextUtils;
 
 import com.android.volley.Request;

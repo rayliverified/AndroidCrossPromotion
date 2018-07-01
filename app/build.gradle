@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "stream.crosspromotion"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -21,7 +21,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':crosspromotion')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.volley:volley:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.0.0-alpha3'
+    implementation 'com.android.volley:volley:1.1.0'
 }
