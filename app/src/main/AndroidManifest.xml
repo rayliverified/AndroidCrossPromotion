@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
 
-        <meta-data android:value="http://apprewards.org/crosspromotion/" android:name="CustomAds"/>
+        <meta-data android:value="http://rayliverified.com/crosspromotion/" android:name="CustomAds"/>
 
         <activity
             android:name=".MainActivity"
