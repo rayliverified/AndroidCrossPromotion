@@ -9,6 +9,18 @@ import org.json.JSONObject;
 
 public class Ad extends Application implements Parcelable {
 
+    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
+        @Override
+        public Ad createFromParcel(Parcel source) {
+            return new Ad(source);
+        }
+
+        @Override
+        public Ad[] newArray(int size) {
+            return new Ad[size];
+        }
+    };
+    private final String mActivity = this.getClass().getSimpleName();
     public long id;
     public long fromUserId;
     public int adType;
@@ -47,8 +59,6 @@ public class Ad extends Application implements Parcelable {
     public int startAt;
     public int endAt;
     public int removeAt;
-
-    private final String mActivity = this.getClass().getSimpleName();
 
     public Ad() {
 
@@ -102,6 +112,47 @@ public class Ad extends Application implements Parcelable {
 
             Log.d(mActivity, "JSON: " + jsonData.toString());
         }
+    }
+
+    protected Ad(Parcel in) {
+        this.id = in.readLong();
+        this.fromUserId = in.readLong();
+        this.adType = in.readInt();
+        this.status = in.readInt();
+        this.segment = in.readString();
+        this.location = in.readString();
+        this.deviceVersion = in.readInt();
+        this.weight = in.readInt();
+        this.price = in.readInt();
+        this.title = in.readString();
+        this.subTitle = in.readString();
+        this.description = in.readString();
+        this.descriptionShort = in.readString();
+        this.category = in.readString();
+        this.rating = in.readDouble();
+        this.installs = in.readInt();
+        this.version = in.readString();
+        this.developer = in.readString();
+        this.email = in.readString();
+        this.address = in.readString();
+        this.website = in.readString();
+        this.linkUrl = in.readString();
+        this.packageName = in.readString();
+        this.previewImageUrl = in.readString();
+        this.imageUrl = in.readString();
+        this.previewVideoImageUrl = in.readString();
+        this.videoUrl = in.readString();
+        this.text1 = in.readString();
+        this.text2 = in.readString();
+        this.text3 = in.readString();
+        this.number1 = in.readInt();
+        this.number2 = in.readInt();
+        this.number3 = in.readInt();
+        this.createAt = in.readInt();
+        this.updateAt = in.readInt();
+        this.startAt = in.readInt();
+        this.endAt = in.readInt();
+        this.removeAt = in.readInt();
     }
 
     public long getId() {
@@ -454,57 +505,4 @@ public class Ad extends Application implements Parcelable {
         dest.writeInt(this.endAt);
         dest.writeInt(this.removeAt);
     }
-
-    protected Ad(Parcel in) {
-        this.id = in.readLong();
-        this.fromUserId = in.readLong();
-        this.adType = in.readInt();
-        this.status = in.readInt();
-        this.segment = in.readString();
-        this.location = in.readString();
-        this.deviceVersion = in.readInt();
-        this.weight = in.readInt();
-        this.price = in.readInt();
-        this.title = in.readString();
-        this.subTitle = in.readString();
-        this.description = in.readString();
-        this.descriptionShort = in.readString();
-        this.category = in.readString();
-        this.rating = in.readDouble();
-        this.installs = in.readInt();
-        this.version = in.readString();
-        this.developer = in.readString();
-        this.email = in.readString();
-        this.address = in.readString();
-        this.website = in.readString();
-        this.linkUrl = in.readString();
-        this.packageName = in.readString();
-        this.previewImageUrl = in.readString();
-        this.imageUrl = in.readString();
-        this.previewVideoImageUrl = in.readString();
-        this.videoUrl = in.readString();
-        this.text1 = in.readString();
-        this.text2 = in.readString();
-        this.text3 = in.readString();
-        this.number1 = in.readInt();
-        this.number2 = in.readInt();
-        this.number3 = in.readInt();
-        this.createAt = in.readInt();
-        this.updateAt = in.readInt();
-        this.startAt = in.readInt();
-        this.endAt = in.readInt();
-        this.removeAt = in.readInt();
-    }
-
-    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
-        @Override
-        public Ad createFromParcel(Parcel source) {
-            return new Ad(source);
-        }
-
-        @Override
-        public Ad[] newArray(int size) {
-            return new Ad[size];
-        }
-    };
 }

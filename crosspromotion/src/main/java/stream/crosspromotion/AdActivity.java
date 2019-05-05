@@ -2,32 +2,28 @@ package stream.crosspromotion;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 public class AdActivity extends AppCompatActivity {
 
     public static String AD_TITLE = "AD_TITLE";
     public static String AD_DEVELOPER_ID = "AD_DEVELOPER_ID";
-
+    private final String mActivity = getClass().getSimpleName();
     String mTitleText;
     String title;
     String developerUrl;
-
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
     AdListFragment mAdListFragment;
-
     Context mContext;
-    private final String mActivity = getClass().getSimpleName();
-
     Boolean restore = false;
 
     @Override
@@ -36,18 +32,13 @@ public class AdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acp);
         mContext = getApplication().getApplicationContext();
 
-        if (getIntent() != null)
-        {
-            if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null)
-            {
+        if (getIntent() != null) {
+            if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null) {
                 developerUrl = getIntent().getStringExtra(AD_DEVELOPER_ID);
             }
-            if (getIntent().getStringExtra(AD_TITLE) != null)
-            {
+            if (getIntent().getStringExtra(AD_TITLE) != null) {
                 title = getIntent().getStringExtra(AD_TITLE);
-            }
-            else
-            {
+            } else {
                 title = getString(R.string.title);
             }
             AdActivity.this.setTitle(title);
@@ -55,7 +46,9 @@ public class AdActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         mFragmentContainer = findViewById(R.id.fragment_adcontainer);
         mFragmentManager = getSupportFragmentManager();
@@ -66,7 +59,7 @@ public class AdActivity extends AppCompatActivity {
             restore = savedInstanceState.getBoolean("restore");
             mTitleText = savedInstanceState.getString("mTitleText");
             Fragment f = mFragmentManager.findFragmentById(R.id.fragment_adcontainer);
-            if(f == null) {
+            if (f == null) {
                 LoadFragment(mTitleText);
             }
         } else {
@@ -103,12 +96,9 @@ public class AdActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == android.R.id.home)
-        {
+        if (id == android.R.id.home) {
             onBackPressed();
-        }
-        else if (id == R.id.menu_store)
-        {
+        } else if (id == R.id.menu_store) {
             Utils.OpenDeveloperUrl(mContext, developerUrl);
         }
 

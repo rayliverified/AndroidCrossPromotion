@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_DESCRIPTIONSHORT = "descriptionshort";
     public static final String KEY_CATEGORY = "category";
     public static final String KEY_RATING = "rating";
-    public static final String KEY_INSTALLS= "installs";
+    public static final String KEY_INSTALLS = "installs";
     public static final String KEY_VERSION = "version";
     public static final String KEY_DEVELOPER = "developer";
     public static final String KEY_EMAIL = "email";
@@ -69,8 +69,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_UPLOADED = "uploaded";
 
     private static DatabaseHelper mInstance = null;
-    public Context mContext;
     public final String mActivity = this.getClass().getSimpleName();
+    public Context mContext;
 
     public DatabaseHelper(Context context) {
         super(context, DBName, null, DBVersion);

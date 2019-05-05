@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_store"
+        android:icon="@drawable/icon_googleplay"
         android:orderInCategory="100"
         android:title="@string/action_store"
-        android:icon="@drawable/icon_googleplay"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:visible="false"
+        app:showAsAction="always" />
 </menu>

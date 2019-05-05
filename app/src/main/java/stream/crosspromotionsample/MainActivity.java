@@ -3,32 +3,31 @@ package stream.crosspromotionsample;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.navigation.NavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.navigation.NavigationView;
 
 import stream.crosspromotion.AdActivity;
 import stream.crosspromotion.AdListFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private final String mActivity = this.getClass().getSimpleName();
     String mTitleText;
-
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
     AdListFragment mAdListFragment;
-
     Context mContext;
-    private final String mActivity = this.getClass().getSimpleName();
-
     Boolean restore = false;
 
     @Override
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             restore = savedInstanceState.getBoolean("restore");
             mTitleText = savedInstanceState.getString("mTitleText");
             Fragment f = mFragmentManager.findFragmentById(R.id.fragment_container);
-            if(f == null) {
+            if (f == null) {
                 LoadFragment(mTitleText);
             }
         } else {

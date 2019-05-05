@@ -7,9 +7,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,19 +34,16 @@ import java.util.Map;
 
 public class AdListFragment extends Fragment {
 
+    private static final String STATE_LIST = "State Adapter Data";
+    final String mActivity = this.getClass().getSimpleName();
     TextView mMessage;
-
     RecyclerView mRecyclerView;
     MainAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
     ArrayList<Ad> mList;
     DatabaseHelper dbHelper;
-
     Boolean restore = false;
-
     Context mContext;
-    final String mActivity = this.getClass().getSimpleName();
-    private static final String STATE_LIST = "State Adapter Data";
 
     public AdListFragment() {
     }
@@ -104,8 +102,7 @@ public class AdListFragment extends Fragment {
             hideMessage();
         }
 
-        if (!restore)
-        {
+        if (!restore) {
             LoadItems();
             GetItems();
         }
@@ -135,8 +132,7 @@ public class AdListFragment extends Fragment {
             e.printStackTrace();
         }
 
-        if (adServer != null)
-        {
+        if (adServer != null) {
             CustomRequest jsonReq = new CustomRequest(Request.Method.POST, adServer + Constants.METHOD_ADS_GET, null,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -212,14 +208,10 @@ public class AdListFragment extends Fragment {
 
     public void FinishLoad() {
         if (mAdapter.getItemCount() == 0) {
-
-            if (this.isVisible()) {
-
+            if (getActivity() != null && this.isAdded()) {
                 showMessage();
             }
-
         } else {
-
             hideMessage();
         }
         mAdapter.notifyDataSetChanged();
@@ -238,10 +230,9 @@ public class AdListFragment extends Fragment {
 
     public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
 
+        public final String mActivity = this.getClass().getSimpleName();
         Context mContext;
         ArrayList<Ad> mList;
-
-        public final String mActivity = this.getClass().getSimpleName();
 
         public MainAdapter(Context context, ArrayList<Ad> list) {
             mContext = context;
@@ -272,6 +263,9 @@ public class AdListFragment extends Fragment {
 
         public class MainViewHolder extends RecyclerView.ViewHolder {
 
+            private final String mActivity = this.getClass().getSimpleName();
+            View.OnClickListener itemClick;
+            Context mContext;
             private LinearLayout mLayout;
             private ImageView mImage;
             private TextView mRating;
@@ -279,11 +273,6 @@ public class AdListFragment extends Fragment {
             private TextView mDescription;
             private TextView mPrice;
             private TextView mBtnInstall;
-
-            View.OnClickListener itemClick;
-
-            Context mContext;
-            private final String mActivity = this.getClass().getSimpleName();
 
             public MainViewHolder(View itemView) {
 
@@ -326,25 +315,20 @@ public class AdListFragment extends Fragment {
                 mImage.setOnClickListener(itemClick);
                 mBtnInstall.setOnClickListener(itemClick);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle, R.drawable.icon_apk_circle));
-                }
-                else
-                {
+                } else {
                     VolleySingleton.getInstance(mContext).getImageLoader().get(item.getPreviewImageUrl(), ImageLoader.getImageListener(mImage, R.drawable.icon_apk_circle_old, R.drawable.icon_apk_circle_old));
-                }                mRating.setText(Double.toString(item.getRating()));
+                }
+                mRating.setText(Double.toString(item.getRating()));
 
                 mTitle.setText(item.getTitle());
                 mDescription.setText(item.getSubTitle());
 
-                if (item.getPrice() == 0)
-                {
+                if (item.getPrice() == 0) {
                     mPrice.setText("FREE");
-                }
-                else
-                {
-                    mPrice.setText("$" + item.getPrice()/100);
+                } else {
+                    mPrice.setText("$" + item.getPrice() / 100);
                 }
             }
         }

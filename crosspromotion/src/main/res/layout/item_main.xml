@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_sm"
         android:background="?attr/selectableItemBackground"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_sm">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,30 +21,30 @@
                 android:id="@+id/image"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:src="@drawable/icon_apk_circle_old"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_apk_circle_old" />
 
             <TextView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_smx"
-                android:paddingRight="@dimen/padding_smx"
-                android:paddingTop="@dimen/padding_smxx"
-                android:paddingBottom="@dimen/padding_smxx"
-                android:layout_marginTop="-12dp"
-                android:layout_marginBottom="@dimen/padding_smxx"
-                android:layout_marginLeft="@dimen/padding_smxx"
-                android:layout_marginRight="@dimen/padding_smxx"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="5.0"
-                android:textSize="10sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/padding_smxx"
+                android:layout_marginTop="-12dp"
+                android:layout_marginRight="@dimen/padding_smxx"
+                android:layout_marginBottom="@dimen/padding_smxx"
+                android:background="@drawable/bg_rrect_rating_selector"
                 android:drawableRight="@drawable/icon_star_tiny_old"
                 android:drawablePadding="@dimen/padding_smxx"
-                android:background="@drawable/bg_rrect_rating_selector"/>
+                android:gravity="center"
+                android:paddingLeft="@dimen/padding_smx"
+                android:paddingTop="@dimen/padding_smxx"
+                android:paddingRight="@dimen/padding_smx"
+                android:paddingBottom="@dimen/padding_smxx"
+                android:text="5.0"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -55,31 +54,31 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/padding_default"
             android:layout_marginRight="@dimen/padding_default"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableRight="@drawable/icon_verified_circle_old"
+                android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:text="Sample App Title"
-                android:textSize="16sp"
                 android:textColor="@color/textPrimary"
-                android:textStyle="bold"
-                android:drawableRight="@drawable/icon_verified_circle_old"
-                android:drawablePadding="5dp"/>
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sample app description that explains what the app does."
-                android:textSize="12sp"
-                android:textColor="@color/textSecondary"
-                android:maxLines="2"
+                android:drawablePadding="5dp"
                 android:ellipsize="end"
-                android:drawablePadding="5dp"/>
+                android:maxLines="2"
+                android:text="Sample app description that explains what the app does."
+                android:textColor="@color/textSecondary"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,27 +91,27 @@
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/padding_smxx"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/padding_smxx"
                 android:text="FREE"
-                android:textSize="12sp"
-                android:textColor="@color/btn_install"/>
+                android:textColor="@color/btn_install"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/btn_install"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="10dp"
                 android:layout_margin="@dimen/padding_smxx"
-                android:gravity="center"
-                android:text="INSTALL"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/icon_plus_fit_white_old"
                 android:background="@drawable/bg_rrect_install_selector"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:drawableLeft="@drawable/icon_plus_fit_white_old"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="INSTALL"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -120,5 +119,5 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/feed_divider"/>
+        android:background="@color/feed_divider" />
 </LinearLayout>

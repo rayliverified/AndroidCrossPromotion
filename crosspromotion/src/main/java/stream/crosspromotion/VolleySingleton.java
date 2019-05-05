@@ -2,8 +2,9 @@ package stream.crosspromotion;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import androidx.collection.LruCache;
 import android.text.TextUtils;
+
+import androidx.collection.LruCache;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -13,12 +14,10 @@ import com.android.volley.toolbox.Volley;
 public class VolleySingleton {
 
     private static VolleySingleton mInstance;
-
+    private final String TAG = getClass().getSimpleName();
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
-
     private Context mContext;
-    private final String TAG = getClass().getSimpleName();
 
     private VolleySingleton(Context context) {
         mContext = context;
