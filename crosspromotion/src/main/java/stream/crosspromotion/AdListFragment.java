@@ -36,14 +36,19 @@ public class AdListFragment extends Fragment {
 
     private static final String STATE_LIST = "State Adapter Data";
     final String mActivity = this.getClass().getSimpleName();
+
+    String adUrl = ""; //Ad server URL.
+
     TextView mMessage;
     RecyclerView mRecyclerView;
     MainAdapter mAdapter;
     LinearLayoutManager mLayoutManager;
     ArrayList<Ad> mList;
     DatabaseHelper dbHelper;
-    Boolean restore = false;
+
     Context mContext;
+
+    Boolean restore = false;
 
     public AdListFragment() {
     }
@@ -59,19 +64,18 @@ public class AdListFragment extends Fragment {
         mContext = getActivity().getApplicationContext();
         dbHelper = DatabaseHelper.getInstance(mContext);
 
-        if (savedInstanceState != null) {
+        getData();
 
+        if (savedInstanceState != null) {
+            restore = savedInstanceState.getBoolean("restore");
             mList = savedInstanceState.getParcelableArrayList(STATE_LIST);
             mAdapter = new MainAdapter(getActivity(), mList);
-
-            restore = savedInstanceState.getBoolean("restore");
-
+            adUrl = savedInstanceState.getString("adUrl");
         } else {
-
+            restore = false;
             mList = new ArrayList<>();
             mAdapter = new MainAdapter(getActivity(), mList);
-
-            restore = false;
+            adUrl = getAdUrl();
         }
     }
 
@@ -94,17 +98,13 @@ public class AdListFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         if (mList.size() == 0) {
-
             showMessage();
-
         } else {
-
             hideMessage();
         }
 
         if (!restore) {
             LoadItems();
-            GetItems();
         }
 
         return rootView;
@@ -117,23 +117,23 @@ public class AdListFragment extends Fragment {
 
         outState.putBoolean("restore", true);
         outState.putParcelableArrayList(STATE_LIST, mList);
+        outState.putString("adUrl", adUrl);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //Refresh items from server if they have been updated.
+        GetItems();
     }
 
     public void GetItems() {
 
         Log.d(mActivity, "GetItems");
 
-        String adServer = null;
-        try {
-            ApplicationInfo ai = mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
-            Object value = ai.metaData.get("CustomAds");
-            adServer = value.toString();
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        if (adServer != null) {
-            CustomRequest jsonReq = new CustomRequest(Request.Method.POST, adServer + Constants.METHOD_ADS_GET, null,
+        if (adUrl != null) {
+            CustomRequest jsonReq = new CustomRequest(Request.Method.POST, adUrl + Constants.METHOD_ADS_GET, null,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -226,6 +226,44 @@ public class AdListFragment extends Fragment {
     public void hideMessage() {
 
         mMessage.setVisibility(View.GONE);
+    }
+
+    /**
+     * Set Ad URL.
+     * <p>
+     * Set the ad server URL to the user passed URL argument.
+     * If no argument is passed, look for the CustomAds meta data value in the manifest.
+     * Defaults to ad server URL in string values.
+     */
+    private String getAdUrl() {
+        if (adUrl.equals("")) {
+            try {
+                ApplicationInfo ai = mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
+                Object value = ai.metaData.get("CustomAds");
+                return value != null ? value.toString() : "";
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+                return mContext.getString(R.string.ad_url);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                return mContext.getString(R.string.ad_url);
+            }
+        }
+
+        return adUrl;
+    }
+
+    /**
+     * Get data passed by intent.
+     */
+    private void getData() {
+        if (getArguments() != null) {
+            Bundle bundle = getArguments();
+            //Get ad server URL.
+            if (bundle.getString(AdActivity.AD_URL) != null) {
+                adUrl = bundle.getString(AdActivity.AD_URL);
+            }
+        }
     }
 
     public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {

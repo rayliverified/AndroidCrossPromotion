@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(mContext, AdActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(AdActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
+            intent.putExtra(AdActivity.AD_URL, mContext.getString(R.string.ad_url));
             intent.putExtra(AdActivity.AD_TITLE, "More Apps from Stream Inc");
+            intent.putExtra(AdActivity.AD_DEVELOPER_ID, getString(R.string.developer_id));
             mContext.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
@@ -117,9 +118,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void LoadFragment(String screen) {
         Log.d("Menu", screen);
+        //noinspection SwitchStatementWithTooFewBranches
         switch (screen) {
             case Constants.SCREEN_MAIN:
                 mAdListFragment = AdListFragment.newInstance();
+//                Bundle bundle = new Bundle();
+//                bundle.putString(AdActivity.AD_URL, mContext.getString(R.string.ad_url));
+//                mAdListFragment.setArguments(bundle);
                 mFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, mAdListFragment, Constants.SCREEN_MAIN)
                         .commit();

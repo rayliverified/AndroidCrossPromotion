@@ -14,16 +14,22 @@ import androidx.fragment.app.FragmentManager;
 
 public class AdActivity extends AppCompatActivity {
 
+    public static String AD_URL = "AD_URL";
     public static String AD_TITLE = "AD_TITLE";
     public static String AD_DEVELOPER_ID = "AD_DEVELOPER_ID";
     private final String mActivity = getClass().getSimpleName();
-    String mTitleText;
-    String title;
-    String developerUrl;
+
+    String mScreen; //Active fragment ID.
+    String adUrl; //Ad server URL.
+    String title; //ActionBar title.
+    String developerUrl; //Developer page URL.
+
     FrameLayout mFragmentContainer;
     FragmentManager mFragmentManager;
     AdListFragment mAdListFragment;
+
     Context mContext;
+
     Boolean restore = false;
 
     @Override
@@ -32,18 +38,9 @@ public class AdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acp);
         mContext = getApplication().getApplicationContext();
 
-        if (getIntent() != null) {
-            if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null) {
-                developerUrl = getIntent().getStringExtra(AD_DEVELOPER_ID);
-            }
-            if (getIntent().getStringExtra(AD_TITLE) != null) {
-                title = getIntent().getStringExtra(AD_TITLE);
-            } else {
-                title = getString(R.string.title);
-            }
-            AdActivity.this.setTitle(title);
-        }
+        getData();
 
+        AdActivity.this.setTitle(title);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -54,19 +51,17 @@ public class AdActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
 
         if (savedInstanceState != null) {
-
             Log.d(mActivity, "Restore");
             restore = savedInstanceState.getBoolean("restore");
-            mTitleText = savedInstanceState.getString("mTitleText");
+            mScreen = savedInstanceState.getString("screen");
             Fragment f = mFragmentManager.findFragmentById(R.id.fragment_adcontainer);
             if (f == null) {
-                LoadFragment(mTitleText);
+                LoadFragment(mScreen);
             }
         } else {
-
             restore = false;
-            mTitleText = Constants.SCREEN_MAIN;
-            LoadFragment(mTitleText);
+            mScreen = Constants.SCREEN_MAIN;
+            LoadFragment(mScreen);
         }
     }
 
@@ -76,7 +71,7 @@ public class AdActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putBoolean("restore", true);
-        outState.putString("mTitleText", mTitleText);
+        outState.putString("screen", mScreen);
     }
 
     @Override
@@ -103,21 +98,46 @@ public class AdActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
     }
-
 
     public void LoadFragment(String screen) {
         Log.d("Menu", screen);
+        //noinspection SwitchStatementWithTooFewBranches
         switch (screen) {
             case Constants.SCREEN_MAIN:
                 mAdListFragment = AdListFragment.newInstance();
+                Bundle bundle = new Bundle();
+                bundle.putString(AD_URL, adUrl);
+                mAdListFragment.setArguments(bundle);
                 mFragmentManager.beginTransaction()
                         .replace(R.id.fragment_adcontainer, mAdListFragment, Constants.SCREEN_MAIN)
                         .commit();
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * Get data passed by intent.
+     */
+    private void getData() {
+        Log.d("AdActivity", "Get Data");
+        if (getIntent() != null) {
+            //Get ad server URL.
+            if (getIntent().getStringExtra(AD_URL) != null) {
+                adUrl = getIntent().getStringExtra(AD_URL);
+            }
+            //Get ActionBar title.
+            if (getIntent().getStringExtra(AD_TITLE) != null) {
+                title = getIntent().getStringExtra(AD_TITLE);
+            } else {
+                title = getString(R.string.title);
+            }
+            //Get developer page URL.
+            if (getIntent().getStringExtra(AD_DEVELOPER_ID) != null) {
+                developerUrl = getIntent().getStringExtra(AD_DEVELOPER_ID);
+            }
         }
     }
 }
